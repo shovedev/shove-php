@@ -14,7 +14,7 @@ class QueuesCreateTest extends TestCase
     public function test_can_create_a_new_queue_via_api()
     {
         $shove = $this->getConnector([
-            QueuesCreateRequest::class => MockResponse::fixture('queues.create.success')
+            QueuesCreateRequest::class => MockResponse::make('', 204)
         ]);
 
         $request = new QueuesCreateRequest(
@@ -30,7 +30,7 @@ class QueuesCreateTest extends TestCase
     public function getConnector(array $mocks = []): ShoveConnector
     {
         return (new ShoveConnector(
-            token: 'shove_pRBiQuNzjlkKbm5c2NpeinHBKuTbBYsqJZPOAX6Tc8aaa130',
+            token: 'test-key',
             baseUrl: 'https://shove.test/api',
         ))->withMockClient(new MockClient($mocks));
     }
