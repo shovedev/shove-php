@@ -2,15 +2,17 @@
 
 namespace Shove\Tests\Queues;
 
-use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 use Shove\QueuesCreateRequest;
+use Shove\QueuesDeleteRequest;
 use Shove\QueueType;
-use Shove\ShoveConnector;
 use Shove\Tests\TestCase;
+use Shove\Tests\TestClient;
 
 class QueuesCreateTest extends TestCase
 {
+    use TestClient;
+
     public function test_can_create_a_new_queue_via_api()
     {
         $shove = $this->getConnector([
@@ -27,18 +29,34 @@ class QueuesCreateTest extends TestCase
         $this->assertEquals(204, $response->status());
     }
 
-    public function getConnector(array $mocks = []): ShoveConnector
+    public function test_can_update_a_new_queue_via_api()
     {
-        return (new ShoveConnector(
-            token: 'test-key',
-            baseUrl: 'https://shove.test/api',
-        ))->withMockClient(new MockClient($mocks));
+        $shove = $this->getConnector([
+            QueuesCreateRequest::class => MockResponse::make('', 204)
+        ]);
+
+        $request = new QueuesCreateRequest(
+            name: 'test_queue',
+            type: QueueType::Unicast
+        );
+
+        $response = $shove->send($request);
+
+        $this->assertEquals(204, $response->status());
     }
 
-    protected function setUp(): void
+    public function test_can_delete_a_queue_via_api()
     {
-        parent::setUp();
+        $shove = $this->getConnector([
+            QueuesDeleteRequest::class => MockResponse::make('', 204)
+        ]);
 
-        MockClient::destroyGlobal();
+        $request = new QueuesDeleteRequest(
+            ulid: 'test_queue',
+        );
+
+        $response = $shove->send($request);
+
+        $this->assertEquals(204, $response->status());
     }
 }
