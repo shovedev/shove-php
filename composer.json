@@ -1,5 +1,5 @@
 {
-    "name": "shovedotdev/shove-php",
+    "name": "shovedev/shove-php",
     "description": "HTTP client for Shove.dev",
     "license": "MIT",
     "autoload": {
