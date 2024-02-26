@@ -35,7 +35,7 @@ class QueuesCreateTest extends TestCase
             QueuesCreateRequest::class => MockResponse::make('', 204)
         ]);
 
-        $request = new QueuesCreateRequest(
+        $request = QueuesCreateRequest::make(
             name: 'test_queue',
             type: QueueType::Unicast
         );

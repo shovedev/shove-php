@@ -24,10 +24,11 @@ class JobsCreateTest extends TestCase
             ], 204)
         ]);
 
-        $request = JobsCreateRequest::make()
-            ->onQueue('test_queue')
-            ->withHeaders(['foo' => 'bar'])
-            ->withPayload(['boo' => 'baz']);
+        $request = JobsCreateRequest::make(
+            queue: 'test_queue',
+            headers: ['foo' => 'bar'],
+            body: ['boo' => 'baz']
+        );
 
         $response = $shove->send($request);
 

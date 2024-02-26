@@ -13,8 +13,14 @@ class QueuesCreateRequest extends Request implements HasBody
 
     protected Method $method = Method::POST;
 
-    public function __construct(public string $name, public QueueType|string $type = QueueType::Multicast)
+    protected QueuesCreateData $data;
+
+    public function __construct(string $name, QueueType|string $type = QueueType::Multicast)
     {
+        $this->data = new QueuesCreateData(
+            name: $name,
+            type: $type
+        );
     }
 
     public function resolveEndpoint(): string
@@ -25,8 +31,8 @@ class QueuesCreateRequest extends Request implements HasBody
     public function defaultBody(): array
     {
         return [
-            'name' => $this->name,
-            'type' => $this->type,
+            'name' => $this->data->name,
+            'type' => $this->data->type,
         ];
     }
 }

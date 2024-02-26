@@ -13,24 +13,31 @@ class JobsCreateRequest extends Request implements HasBody
 
     protected Method $method = Method::POST;
 
+    protected JobsCreateData $data;
+
     public function __construct(
-        public ?string $queue = null,
-        public ?array $jobHeaders = null,
-        public ?array $jobBody = null
+        ?string $queue = null,
+        ?array $headers = null,
+        ?array $body = null
     ) {
+        $this->data = new JobsCreateData(
+            queue: $queue,
+            headers: $headers,
+            body: $body
+        );
     }
 
     public function resolveEndpoint(): string
     {
-        return '/jobs';
+        return '/i';
     }
 
     public function defaultBody(): array
     {
         return [
-            'queue' => $this->queue,
-            'headers' => $this->jobHeaders,
-            'payload' => $this->jobBody,
+            'queue' => $this->data->queue,
+            'headers' => $this->data->headers,
+            'payload' => $this->data->body,
         ];
     }
 
