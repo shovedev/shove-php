@@ -9,6 +9,7 @@ use Saloon\Traits\Plugins\HasTimeout;
 class ShoveConnector extends Connector
 {
     use HasTimeout;
+    use Makeable;
 
     protected int $connectTimeout = 10;
 
@@ -22,7 +23,7 @@ class ShoveConnector extends Connector
 
     public function resolveBaseUrl(): string
     {
-        return $this->baseUrl ?? 'https://shove.dev/api';
+        return $this->baseUrl ?? 'https://app.shove.dev/api';
     }
 
     protected function defaultAuth(): TokenAuthenticator

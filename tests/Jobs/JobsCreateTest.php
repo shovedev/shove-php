@@ -19,7 +19,7 @@ class JobsCreateTest extends TestCase
                 'data' => [
                     'queue' => 'test_queue',
                     'headers' => ['foo' => 'bar'],
-                    'payload' => ['boo' => 'baz'],
+                    'body' => ['boo' => 'baz'],
                 ]
             ], 204)
         ]);
@@ -35,7 +35,7 @@ class JobsCreateTest extends TestCase
         $this->assertEquals(204, $response->status());
         $this->assertEquals('test_queue', $response->json('data.queue'));
         $this->assertEquals(['foo' => 'bar'], $response->json('data.headers'));
-        $this->assertEquals(['boo' => 'baz'], $response->json('data.payload'));
+        $this->assertEquals(['boo' => 'baz'], $response->json('data.body'));
     }
 
     public function test_can_check_the_status_of_a_job_via_api()
@@ -48,14 +48,14 @@ class JobsCreateTest extends TestCase
                     'headers' => ['foo' => 'bar'],
                     'payload' => ['boo' => 'baz'],
                 ]
-            ], 204)
+            ])
         ]);
 
         $request = JobsReadRequest::make('test-job-id');
 
         $response = $shove->send($request);
 
-        $this->assertEquals(204, $response->status());
+        $this->assertEquals(200, $response->status());
         $this->assertEquals('test_queue', $response->json('data.queue'));
         $this->assertEquals('reserved', $response->json('data.status'));
         $this->assertEquals(['foo' => 'bar'], $response->json('data.headers'));

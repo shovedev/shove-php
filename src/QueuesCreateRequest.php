@@ -10,6 +10,7 @@ use Saloon\Traits\Body\HasJsonBody;
 class QueuesCreateRequest extends Request implements HasBody
 {
     use HasJsonBody;
+    use Makeable;
 
     protected Method $method = Method::POST;
 

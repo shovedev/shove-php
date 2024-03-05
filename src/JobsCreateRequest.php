@@ -10,6 +10,7 @@ use Saloon\Traits\Body\HasJsonBody;
 class JobsCreateRequest extends Request implements HasBody
 {
     use HasJsonBody;
+    use Makeable;
 
     protected Method $method = Method::POST;
 
@@ -27,6 +28,11 @@ class JobsCreateRequest extends Request implements HasBody
         );
     }
 
+    public function getData(): JobsCreateData
+    {
+        return $this->data;
+    }
+
     public function resolveEndpoint(): string
     {
         return '/i';
@@ -37,28 +43,7 @@ class JobsCreateRequest extends Request implements HasBody
         return [
             'queue' => $this->data->queue,
             'headers' => $this->data->headers,
-            'payload' => $this->data->body,
+            'body' => $this->data->body,
         ];
-    }
-
-    public function withHeaders(array $headers): static
-    {
-        $this->jobHeaders = $headers;
-
-        return $this;
-    }
-
-    public function withPayload(array $payload): static
-    {
-        $this->jobBody = $payload;
-
-        return $this;
-    }
-
-    public function onQueue(string $queue): static
-    {
-        $this->queue = $queue;
-
-        return $this;
     }
 }
