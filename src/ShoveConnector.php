@@ -23,7 +23,7 @@ class ShoveConnector extends Connector
 
     public function resolveBaseUrl(): string
     {
-        return $this->baseUrl ?? 'https://app.shove.dev/api';
+        return $this->baseUrl ?? 'https://shove.dev/api';
     }
 
     protected function defaultAuth(): TokenAuthenticator
@@ -34,7 +34,6 @@ class ShoveConnector extends Connector
     protected function defaultHeaders(): array
     {
         return [
-////            'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];
     }
