@@ -35,7 +35,7 @@ class JobsCreateRequest extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/i';
+        return '/jobs';
     }
 
     public function defaultBody(): array
