@@ -1,8 +1,9 @@
 <?php
 
-namespace Shove;
+namespace Shove\Data;
 
-class JobsCreateData
+
+final readonly class Job extends Data
 {
     public function __construct(
         public readonly ?string $queue = null,

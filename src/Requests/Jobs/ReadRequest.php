@@ -1,25 +1,25 @@
 <?php
 
-namespace Shove;
+namespace Shove\Requests\Jobs;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class JobsReadRequest extends Request implements HasBody
+class ReadRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
-    protected Method $method = Method::POST;
+    protected Method $method = Method::GET;
 
     public function __construct(
-        public string $jobId,
+        public string $id,
     ) {
     }
 
     public function resolveEndpoint(): string
     {
-        return '/jobs'.$this->jobId;
+        return '/jobs/'.$this->id;
     }
 }

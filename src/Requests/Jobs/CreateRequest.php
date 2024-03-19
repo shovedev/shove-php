@@ -1,36 +1,33 @@
 <?php
 
-namespace Shove;
+namespace Shove\Requests\Jobs;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
+use Shove\Data\Job;
+use Shove\Traits\Makeable;
 
-class JobsCreateRequest extends Request implements HasBody
+class CreateRequest extends Request implements HasBody
 {
     use HasJsonBody;
     use Makeable;
 
     protected Method $method = Method::POST;
 
-    protected JobsCreateData $data;
+    protected Job $job;
 
     public function __construct(
         ?string $queue = null,
         ?array $headers = null,
         ?array $body = null
     ) {
-        $this->data = new JobsCreateData(
+        $this->job = new Job(
             queue: $queue,
             headers: $headers,
             body: $body
         );
-    }
-
-    public function getData(): JobsCreateData
-    {
-        return $this->data;
     }
 
     public function resolveEndpoint(): string
@@ -41,9 +38,9 @@ class JobsCreateRequest extends Request implements HasBody
     public function defaultBody(): array
     {
         return [
-            'queue' => $this->data->queue,
-            'headers' => $this->data->headers,
-            'body' => $this->data->body,
+            'queue' => $this->job->queue,
+            'headers' => $this->job->headers,
+            'body' => $this->job->body,
         ];
     }
 }

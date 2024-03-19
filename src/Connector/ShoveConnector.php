@@ -1,23 +1,28 @@
 <?php
 
-namespace Shove;
+declare(strict_types=1);
+
+namespace Shove\Connector;
 
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Traits\Plugins\HasTimeout;
+use Shove\Traits\InteractsWithResources;
+use Shove\Traits\Makeable;
 
 class ShoveConnector extends Connector
 {
     use HasTimeout;
     use Makeable;
+    use InteractsWithResources;
 
     protected int $connectTimeout = 10;
 
     protected int $requestTimeout = 30;
 
     public function __construct(
-        public readonly string $token,
-        public ?string $baseUrl = null
+        protected readonly string $token,
+        protected ?string $baseUrl = null
     ) {
     }
 
@@ -34,6 +39,7 @@ class ShoveConnector extends Connector
     protected function defaultHeaders(): array
     {
         return [
+            'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];
     }

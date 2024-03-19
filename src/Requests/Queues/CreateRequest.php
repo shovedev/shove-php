@@ -1,24 +1,28 @@
 <?php
 
-namespace Shove;
+namespace Shove\Requests\Queues;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
+use Shove\Data\Queue;
+use Shove\Data\QueuesCreateData;
+use Shove\Enums\QueueType;
+use Shove\Traits\Makeable;
 
-class QueuesCreateRequest extends Request implements HasBody
+class CreateRequest extends Request implements HasBody
 {
     use HasJsonBody;
     use Makeable;
 
     protected Method $method = Method::POST;
 
-    protected QueuesCreateData $data;
+    protected Queue $queue;
 
     public function __construct(string $name, QueueType|string $type = QueueType::Multicast)
     {
-        $this->data = new QueuesCreateData(
+        $this->queue = new Queue(
             name: $name,
             type: $type
         );
@@ -32,8 +36,8 @@ class QueuesCreateRequest extends Request implements HasBody
     public function defaultBody(): array
     {
         return [
-            'name' => $this->data->name,
-            'type' => $this->data->type,
+            'name' => $this->queue->name,
+            'type' => $this->queue->type,
         ];
     }
 }

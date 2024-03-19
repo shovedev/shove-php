@@ -1,6 +1,6 @@
 <?php
 
-namespace Shove;
+namespace Shove\Traits;
 
 trait Makeable
 {

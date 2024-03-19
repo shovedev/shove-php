@@ -1,6 +1,6 @@
 <?php
 
-namespace Shove;
+namespace Shove\Enums;
 
 enum QueueType: string
 {
