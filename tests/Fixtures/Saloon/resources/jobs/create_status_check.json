@@ -1,0 +1,17 @@
+{
+    "statusCode": 201,
+    "headers": {
+        "Server": "nginx\/1.25.4",
+        "Content-Type": "application\/json",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "X-Powered-By": "PHP\/8.2.16",
+        "Cache-Control": "no-cache, private",
+        "Date": "Wed, 17 Apr 2024 17:06:21 GMT",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "56",
+        "phpdebugbar-id": "Xaa4ae5328e383e9504d43ccb4e414309",
+        "Access-Control-Allow-Origin": "*"
+    },
+    "data": "{\"data\":{\"id\":171305363021918209,\"queue\":\"secondary\",\"headers\":\"{\\\"boo\\\":\\\"bbb\\\"}\",\"body\":\"{\\\"boo\\\":\\\"baz\\\"}\",\"status\":\"pending\",\"starts_at\":\"2024-04-17T17:06:21.000000Z\",\"created_at\":\"2024-04-17T17:06:21.000000Z\"}}"
+}

@@ -8,10 +8,11 @@
         "Vary": "Accept-Encoding",
         "X-Powered-By": "PHP\/8.2.16",
         "Cache-Control": "no-cache, private",
-        "Date": "Tue, 19 Mar 2024 15:16:17 GMT",
+        "Date": "Wed, 17 Apr 2024 17:06:21 GMT",
         "X-RateLimit-Limit": "60",
-        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Remaining": "54",
+        "phpdebugbar-id": "X1f08325ec0d21177dfcc36616eb947b2",
         "Access-Control-Allow-Origin": "*"
     },
-    "data": "{\"name\":\"test_queue\",\"type\":\"unicast\",\"ulid\":\"01hsbmhqfwdy3ted6ymn85vqsb\",\"team_id\":1,\"updated_at\":\"2024-03-19T15:16:17.000000Z\",\"created_at\":\"2024-03-19T15:16:17.000000Z\",\"id\":2}"
+    "data": "{\"name\":\"test_queue\",\"type\":\"unicast\",\"id\":171305363364581377,\"team_id\":171284747776999425,\"updated_at\":\"2024-04-17T17:06:21.000000Z\",\"created_at\":\"2024-04-17T17:06:21.000000Z\"}"
 }

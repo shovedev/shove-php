@@ -19,9 +19,9 @@ class CreateRequest extends Request implements HasBody
     protected Job $job;
 
     public function __construct(
-        ?string $queue = null,
-        ?array $headers = null,
-        ?array $body = null
+        string $queue = 'default',
+        array $headers = [],
+        array $body = []
     ) {
         $this->job = new Job(
             queue: $queue,
@@ -39,8 +39,13 @@ class CreateRequest extends Request implements HasBody
     {
         return [
             'queue' => $this->job->queue,
-            'headers' => $this->job->headers,
-            'body' => $this->job->body,
+            'headers' => $this->encodeJson($this->job->headers),
+            'body' => $this->encodeJson($this->job->body),
         ];
+    }
+
+    public function encodeJson(array $content): string
+    {
+        return json_encode($content);
     }
 }
